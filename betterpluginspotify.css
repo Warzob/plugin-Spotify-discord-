@@ -1,0 +1,170 @@
+/* ========== Spotify Player ========== */ 
+/* ========== Spotify Animations ========== */
+@keyframes shimmer {
+   0% { transform: translateX(-100%); }
+   100% { transform: translateX(100%); }
+}
+@keyframes pulse {
+   0% { transform: scale(1); }
+   50% { transform: scale(1.02); }
+   100% { transform: scale(1); }
+}
+
+/* ========== Modify bounding box ========== */
+#vc-spotify-player {
+   position: relative;
+   height: 100px;
+   border: 0;
+   --vc-spotify-green: oklch(76% 0.1 215) !important;
+   z-index: -1;
+   transition: height 0.25s ease-in-out, box-shadow 0.3s ease;
+   background: linear-gradient(135deg, rgba(29, 185, 84, 0.2), rgba(0, 0, 0, 0.5));
+   border-radius: 10px;
+   display: flex; /* To align cover and texts */
+   align-items: center; /* Vertical centering */
+   justify-content: center; /* Horizontal centering in blur mode */
+   padding: 10px; /* Internal spacing */
+}
+
+/* ========== Grow in size and glowing border when hovered ========== */
+#vc-spotify-player:hover {
+   height: 125px;
+   justify-content: flex-start; /* Revert to left alignment in non-blur mode */
+}
+
+/* ========== Background album art with pulse animation ========== */
+#vc-spotify-player::before {
+   content: "";
+   position: absolute;
+   height: 200%;
+   width: 100%;
+   top: 0;
+   left: 0;
+   z-index: -1;
+   background: var(--vc-spotify-track-image);
+   background-size: 110%;
+   background-position: 60% 60%;
+   filter: blur(5px) brightness(50%);
+   transition: all 0.25s ease-in-out;
+   border-radius: 10px;
+   animation: pulse 2s ease-in-out infinite;
+}
+#vc-spotify-player:hover::before {
+   filter: blur(0) brightness(50%);
+   animation: none;
+}
+
+/* ========== Album image (visible and centered only when blur is active) small image ========== */
+#vc-spotify-album-image {
+   display: block; /* Visible by default (when blur active) */
+   width: 60px; /* Enlarged size */
+   height: 60px;
+   margin-top: -15px;
+   margin-left: 180px;
+   filter: drop-shadow(0 0 2px black); /* Drop shadow */
+   transition: transform 0.2s ease, opacity 0.2s ease; /* Smooth animation */
+   opacity: 1; /* Visible by default */
+}
+
+/* Hide image on hover (when blur disabled) */
+#vc-spotify-player:hover #vc-spotify-album-image {
+   opacity: 0; /* Fades out smoothly */
+   display: none; /* Ensures space is freed */
+}
+
+/* ========== Increase song title size with neon effect and emoji ========== */
+#vc-spotify-song-title {
+   font-size: 130%;
+   margin-top: -5px;
+   color: oklch(76% 0.1 215);
+   filter: drop-shadow(0 0 2px black);
+   text-shadow: 0 0 6px rgba(0, 0, 0, 0.185), 0 0 10px var(--vc-spotify-green);
+   transition: text-shadow 0.3s ease, margin 0.2s ease, text-align 0.2s ease; /* Smooth animation */
+   font-family: 'Poppins', sans-serif !important;
+}
+
+/* Position title at top-left in non-blur mode */
+#vc-spotify-player:hover #vc-spotify-song-title {
+   top: 20px; /* Place at top */
+   right: 250px; /* Place at left */
+   margin: 0; /* Remove margins */
+   text-align: left; /* Left alignment */
+}
+#vc-spotify-titles span {
+   visibility: visible;
+   position: relative;
+   color: rgb(184, 179, 179);
+   filter: drop-shadow(0 0 2px black);
+   text-shadow: 0 0 6px rgba(0, 0, 0, 0.185);
+   font-family: 'Poppins', sans-serif !important;
+}
+
+/* Position artist at top-left in non-blur mode */
+#vc-spotify-player:hover #vc-spotify-titles {
+   position: absolute;
+   top: 9px; /* Just below the title */
+   left: 1px; /* Place at left */
+   margin: 2;
+   text-align: left; /* Left alignment */
+}
+
+/* ========== Change progress bar color with shimmer effect ========== */
+.barFill_a562c8::after {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+   animation: shimmer 2s infinite linear;
+}
+
+/* ========== Button row with hover animation ========== */
+.vc-spotify-button-row {
+   filter: drop-shadow(0 0 2px black);
+   position: relative;
+   top: 15px;
+   right: -110px;
+   display: flex;
+   justify-content: center;
+}
+.vc-spotify-button-row button {
+   transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.vc-spotify-button-row button:hover {
+   transform: scale(1.1);
+   background-color: var(--vc-spotify-green);
+}
+
+/* ========== Drop shadow & color for the time text ========== */
+.vc-spotify-progress-time {
+   filter: drop-shadow(0 0 2px black);
+   font-family: 'Poppins', sans-serif !important;
+}
+
+/* ========== Remove clipping for big chars (ex. y, g) ========== */
+.vc-spotify-ellipoverflow {
+   overflow: visible;
+}
+
+/* ========== Drop shadow for visibility ========== */
+.buttons__37e49 button,
+.avatarWrapper__37e49 {
+   filter: drop-shadow(0 0 2px black);
+}
+
+/* ========== Position progress bar (shifted 1cm down in blur mode) ========== */
+#vc-spotify-progress-bar {
+   position: absolute !important;
+   top: calc(60% + 10px); /* Shifted 1cm (10px) in blur mode */
+   width: 80% !important;
+   left: 9%;
+   display: block !important; /* Ensure visibility */
+   z-index: 1; /* Place above background */
+}
+
+/* Move bar up in non-blur mode */
+#vc-spotify-player:hover #vc-spotify-progress-bar {
+   top: 70%; /* Default position without offset */
+}
