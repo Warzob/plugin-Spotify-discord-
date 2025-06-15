@@ -26,6 +26,8 @@
   background: var(--vc-spotify-track-image);
   background-size:110%;
   background-position:50%;
+  margin-bottom:4px;
+  margin-top: 4px;
   filter: blur(4px) brightness(60%);
   transition: all 0.25s ease-in-out;
 }
