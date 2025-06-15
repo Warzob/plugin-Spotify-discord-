@@ -1,0 +1,71 @@
+.panels_c48ade {
+  overflow:hidden;
+}
+/* modify bounding box */
+#vc-spotify-player {
+  border-bottom: 0;
+  min-height:100px;
+  --vc-spotify-green: #1ed760 !important;
+  transition: min-height 0.25s ease-in;
+  background:transparent !important;
+}
+/* grow in size when hovered */
+#vc-spotify-player:hover {
+  min-height:148px; 
+}
+/* background album art */
+#vc-spotify-player::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top:0;
+  left: 0;
+  z-index:-1;
+
+  background: var(--vc-spotify-track-image);
+  background-size:100%;
+  background-position:50%;
+  filter: blur(4px) brightness(60%);
+  transition: all 0.25s ease-in-out;
+}
+/* unblur when hovered */
+#vc-spotify-player:hover::before {
+  filter: blur(1px) brightness(80%);
+}
+/* remove small album art */
+#vc-spotify-album-image {
+  display:none;
+}
+/* increase song title size */
+#vc-spotify-song-title {
+  font-size:140%;
+  margin-bottom:4px;
+  margin-top: 4px;
+  color: var(--vc-spotify-green);
+  filter: drop-shadow(0 0 2px black);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.185);
+}
+/* artist/album */
+#vc-spotify-titles span {
+  color: rgb(184, 179, 179);
+  filter: drop-shadow(0 0 2px black);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.185);
+}
+/* button row */
+.vc-spotify-button-row {
+  filter: drop-shadow(0 0 2px black);
+}
+/* drop shadow & color for the time text*/
+.vc-spotify-progress-time {
+  filter: drop-shadow(0 0 2px black);
+}
+/* remove clipping on title for big chars (ex. y, g) */
+.vc-spotify-ellipoverflow {
+  overflow: visible
+}
+/* drop shadow for visiblity */
+.buttons__37e49 button,
+.avatarWrapper__37e49 {
+  filter: drop-shadow(0 0 2px black);
+}
