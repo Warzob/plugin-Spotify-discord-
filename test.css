@@ -24,7 +24,7 @@
   z-index:-1;
 
   background: var(--vc-spotify-track-image);
-  background-size:100%;
+  background-size:110%;
   background-position:50%;
   filter: blur(4px) brightness(60%);
   transition: all 0.25s ease-in-out;
@@ -55,6 +55,8 @@
 /* button row */
 .vc-spotify-button-row {
   filter: drop-shadow(0 0 2px black);
+  margin-bottom:4px;
+  margin-top: 4px;
 }
 /* drop shadow & color for the time text*/
 .vc-spotify-progress-time {
