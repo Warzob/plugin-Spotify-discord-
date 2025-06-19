@@ -167,4 +167,9 @@
 /* Move bar up in non-blur mode */
 #vc-spotify-player:hover #vc-spotify-progress-bar {
    top: 70%; /* Default position without offset */
+}  
+
+/* Clip rounded corners */
+.panels_c48ade {
+  overflow:hidden;
 }
